@@ -64,20 +64,24 @@ public class UserController {
     @PostMapping("/savecar/{userId}")
     public ResponseEntity<Car> saveCar(@PathVariable("userId") Long userId, @RequestBody Car car){
 
-        if (userService.getUserById(userId) == null)
+        if (userService.getUserById(userId) == null) {
             return ResponseEntity.notFound().build();
-        Car carNew = userService.saveCar(userId, car);
-        return ResponseEntity.ok(carNew);
+        }else{
+            Car carNew = userService.saveCar(userId, car);
+            return ResponseEntity.ok(carNew);
+        }
 
     }
 
     @PostMapping("/savebike/{userId}")
     public ResponseEntity<Bike> saveBike(@PathVariable("userId") Long userId, @RequestBody Bike bike){
 
-        if (userService.getUserById(userId) == null)
+        if (userService.getUserById(userId) == null) {
             return ResponseEntity.notFound().build();
-        Bike bikeNew = userService.saveBike(userId, bike);
-        return ResponseEntity.ok(bikeNew);
+        }else{
+            Bike bikeNew = userService.saveBike(userId, bike);
+            return ResponseEntity.ok(bikeNew);
+        }
 
     }
 

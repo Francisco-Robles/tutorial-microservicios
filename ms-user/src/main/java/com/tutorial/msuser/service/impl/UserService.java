@@ -46,12 +46,12 @@ public class UserService implements IUserService {
     }
 
     public List<Car> getCars (Long userId){
-        List<Car> cars = restTemplate.getForObject("http://localhost:8002/car/byUser/" + userId, List.class);
+        List<Car> cars = restTemplate.getForObject("http://car-service/car/byUser/" + userId, List.class);
         return cars;
     }
 
     public List<Bike> getBikes (Long userId){
-        List<Bike> bikes = restTemplate.getForObject("http://localhost:8003/bike/byUser/" + userId, List.class);
+        List<Bike> bikes = restTemplate.getForObject("http://bike-service/bike/byUser/" + userId, List.class);
         return bikes;
     }
 
@@ -80,14 +80,14 @@ public class UserService implements IUserService {
         }else{
             result.put("User", user);
             List<Car> cars = carFeignClient.getCars(userId);
-            if (cars.isEmpty()){
+            if (cars == null){
                 result.put("Cars","ese user no posee autos");
             }else{
                 result.put("Cars",cars);
             }
 
             List<Bike> bikes = bikeFeignClient.getBikes(userId);
-            if (bikes.isEmpty()){
+            if (bikes == null){
                 result.put("Bikes", "ese user no tiene motos");
             }else{
                 result.put("Bikes", bikes);
