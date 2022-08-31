@@ -105,7 +105,7 @@ public class UserController {
         return new ResponseEntity("El usuario " + userId + " no tiene dinero para autos.", HttpStatus.OK);
     }
 
-    private ResponseEntity <List<Bike>> fallBackGetBikes (@PathVariable("userId") Long userId){
+    private ResponseEntity <List<Bike>> fallBackGetBikes (@PathVariable("userId") Long userId, Exception e){
         return new ResponseEntity("El usuario " + userId + " tiene las motos en el taller.", HttpStatus.OK);
     }
 
